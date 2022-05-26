@@ -1,9 +1,23 @@
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Nav from '../Components/Nav'
 import DefaultLayout from '../Layouts/DefaultLayout'
 import Input from './Input'
+import axios from 'axios'
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
 
 export default function Home() {
+
+  const [students, setStudents] = useState([])
+
+  useEffect( () => {
+    axios.get('https://fejs-c7-api.herokuapp.com/api/students/?populate=*')
+  .then( res => {
+    setStudents([...res.data.data])
+  })
+  })
+
   return (
     <div>
       <Head>
@@ -14,14 +28,22 @@ export default function Home() {
 
       <DefaultLayout>
         <h1>Ini Home</h1>
-        <p>disni bakal ada Card 
-          isi nya 
-          photo
-          nama
-          Age
-          email
-          pake bootstrap aja
-        </p>
+        {students.map((student) => {
+          return(
+            <div key={student.id}>
+                { student.attributes.photo.data !== null &&
+                  <Zoom>
+                    <img src={student.attributes.photo.data.attributes.url} width="200"/>
+                  </Zoom>
+                }
+                <ul>
+                  <li>First Name: {student.attributes.firstname}</li>
+                  <li>Last Name: {student.attributes.lastname}</li>
+                  <li>Location: {student.attributes.location}</li>
+                </ul>
+            </div>
+          )
+        })}
       </DefaultLayout>
 
      

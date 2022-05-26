@@ -37,10 +37,7 @@ const Chart = () => {
     <div>
       <DefaultLayout>
           <h1>Chart</h1>
-          <p>disini bakal ada chart pake chart JS
-              jangan lupa liat dokumentasi nya
-          </p>
-          <Doughnut data={data}/>
+          <Doughnut data={data} width="200px"/>
       </DefaultLayout>
     </div>
   )
