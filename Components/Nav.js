@@ -15,7 +15,7 @@ const Nav = () => {
     //     </div>
     //   </div>
     // </nav>
-    <nav className="navbar bg-light">
+    <nav className="navbar">
       <div className="container-fluid">
         <Link className='nav-item ' href="/">
           <a className='text-decoration-none h1 text-dark'>HOME</a>

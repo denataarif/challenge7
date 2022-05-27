@@ -28,15 +28,15 @@ export default function Home() {
       </Head>
 
       <DefaultLayout>
-        <h1>Ini Home</h1>
+        <h1 className='text-center'>Hii Welcome To Home</h1>
         {students.map((student) => {
           return(
-            <div key={student.id} >
-              <div className="d-flex">
-                  <div className="card " style={{width:'18rem'}}>
+            <div key={student.id} className="row">
+              <div className="col">
+                  <div  style={{width:'18rem'}}>
                   { student.attributes.photo.data !== null &&
                         <Zoom>
-                          <img className="card-img-top img-thumbnail"src={student.attributes.photo.data.attributes.url} />
+                          <img className="card-img-top"src={student.attributes.photo.data.attributes.url} style={{width:"200px", height:"auto"}}/>
                         </Zoom>
                       }
                       <div className="card-body">
