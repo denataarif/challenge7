@@ -6,9 +6,11 @@ import Input from './Input'
 import axios from 'axios'
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
-
+import { useRouter } from 'next/dist/client/router'
 
 export default function Home() {
+
+  const router = useRouter()
 
   const [students, setStudents] = useState([])
 
@@ -29,26 +31,27 @@ export default function Home() {
 
       <DefaultLayout>
         <h1 className='text-center'>Hii Welcome To Home</h1>
-        {students.map((student) => {
-          return(
-            <div key={student.id} className="row">
-              <div className="col">
-                  <div  style={{width:'18rem'}}>
-                  { student.attributes.photo.data !== null &&
-                        <Zoom>
-                          <img className="card-img-top"src={student.attributes.photo.data.attributes.url} style={{width:"200px", height:"auto"}}/>
-                        </Zoom>
-                      }
-                      <div className="card-body">
-                        <p className="card-text">First Name: {student.attributes.firstname}</p>
-                        <p className="card-text">Last Name: {student.attributes.lastname}</p>
-                        <p className="card-text">Location: {student.attributes.location}</p>
-                      </div>
+        <div className='d-flex flex-wrap m-5 justify-content-center' onClick={() => router.push(`/student/${router.query.id}`)}>
+          {students.map((student) => {
+            return(
+              <div key={student.id} style={{width:'300px'}} className="m-5">
+                    <div  >
+                    { student.attributes.photo.data !== null &&
+                          <Zoom>
+                            <img className="card-img-top rounded"src={student.attributes.photo.data.attributes.url} style={{width:"300px", height:"400px", border:"white"}} />
+                          </Zoom>
+                        }
+                        <div className="card-body">
+                          <p className="card-text">First Name: {student.attributes.firstname}</p>
+                          <p className="card-text">Last Name: {student.attributes.lastname}</p>
+                          <p className="card-text">Location: {student.attributes.location}</p>
+                        </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          )
+            )
         })}
+        </div>
+        
       </DefaultLayout>
 
      
