@@ -7,6 +7,7 @@ import axios from 'axios'
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 
+
 export default function Home() {
 
   const [students, setStudents] = useState([])
@@ -30,17 +31,21 @@ export default function Home() {
         <h1>Ini Home</h1>
         {students.map((student) => {
           return(
-            <div key={student.id}>
-                { student.attributes.photo.data !== null &&
-                  <Zoom>
-                    <img src={student.attributes.photo.data.attributes.url} width="200"/>
-                  </Zoom>
-                }
-                <ul>
-                  <li>First Name: {student.attributes.firstname}</li>
-                  <li>Last Name: {student.attributes.lastname}</li>
-                  <li>Location: {student.attributes.location}</li>
-                </ul>
+            <div key={student.id} >
+              <div className="d-flex">
+                  <div className="card " style={{width:'18rem'}}>
+                  { student.attributes.photo.data !== null &&
+                        <Zoom>
+                          <img className="card-img-top img-thumbnail"src={student.attributes.photo.data.attributes.url} />
+                        </Zoom>
+                      }
+                      <div className="card-body">
+                        <p className="card-text">First Name: {student.attributes.firstname}</p>
+                        <p className="card-text">Last Name: {student.attributes.lastname}</p>
+                        <p className="card-text">Location: {student.attributes.location}</p>
+                      </div>
+                </div>
+              </div>
             </div>
           )
         })}

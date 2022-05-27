@@ -47,9 +47,9 @@ const Input = () => {
 
   return (
       <DefaultLayout>
-          <div>
-            <form onSubmit={formSubmitHandler}>
-                <div className='card w-50' >
+          <div className="d-flex justify-content-center mt-4">
+            <form onSubmit={formSubmitHandler} >
+                <div className='card w-50 p-3' >
                     <div className="input-group">
                         <div className='row'>
                             <div className='col-6'>
